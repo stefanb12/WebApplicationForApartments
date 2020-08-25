@@ -8,7 +8,9 @@ public class User {
 	private Boolean gender; // True = man, False = Woman
 	private Role role;
 	
-	public User() {}
+	public User() {
+		
+	}
 	
 	public User(String username, String password, String name, String surname, Boolean gender, Role role) {
 		super();
