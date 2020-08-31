@@ -6,38 +6,42 @@
     <body>
         <div class="reg_title"><h1>Registracija</h1></div>
         <div class="reg_mane">
-            <form>
+            <form id="registration" @submit="registerNewUser">
 
                 <h2 class="username">Korisničko ime</h2>
-                <input class="usernameinput" type="text"><br>
+                <input class="usernameinput" type="text" id="username" v-model="username"><br>
 
                 <h2 class="name">Ime</h2>
-                <input class="nameinput" type="text"><br>
+                <input class="nameinput" type="text" id="name" v-model="name"><br>
 
                 <h2 class="lastname">Prezime</h2>
-                <input class="lastnameinput" type="text"><br>
+                <input class="lastnameinput" type="text" id="lastname" v-model="lastname"><br>
 
                 <h2 class="pol">Pol</h2>
                 <label class="radio">
-                    <input class="radio-male" type="radio">
+                    <input class="radio-male" type="radio" name="gender">
                     <span class="checkmark"></span>
                     Muško    
                 </label>
                 <label class="radio">
-                    <input class="radio-female" type="radio">
+                    <input class="radio-female" type="radio" name="gender">
                     <span class="checkmark"></span>
                     Žensko 
                 </label>
 
                 <h2 class="password">Lozinka</h2>
-                <input class="passwordinput" type="password"><br>
+                <input class="passwordinput" type="password" id="password" v-model="password"><br>
 
                 <h2 class="reppass">Potvrda lozinke</h2>
-                <input class="reppassinput" type="password"><br>
+                <input class="reppassinput" type="password" id="confirmpassword" v-model="confirmpassword"><br>
 
                 <button type="submit">Registruj se</button>
 
             </form>
         </div>
+        
+        <script src="js/vue.js"></script>
+		<script src="js/axios.js"></script>
+		<script src="app/app.js"></script>
     </body>
 </html>

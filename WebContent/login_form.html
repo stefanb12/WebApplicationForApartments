@@ -8,17 +8,22 @@
             <h1>Uloguj se</h1>
         </div>
         <div class="login_mane">
-            <form>
+            <form id="login" @submit="checkForm">
 
                 <h2 class="username">Korisničko ime</h2>
-                <input class="usernameinput" type="text"><br>
+                <input class="usernameinput" type="text" id="username" v-model="username"><br>
 
                 <h2 class="password">Lozinka</h2>
-                <input class="passwordinput" type="password"><br>
+                <input class="passwordinput" type="password" id="password" v-model="password"><br>
 
                 <button type="submit">Uloguj se</button>
 
                 </form>
         </div>
+        
+        <script src="js/vue.js"></script>
+		<script src="js/axios.js"></script>
+		<script src="app/app.js"></script>
+	
     </body>
 </html>

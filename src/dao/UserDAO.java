@@ -1,8 +1,16 @@
 package dao;
 
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.User;
 
@@ -11,7 +19,21 @@ public class UserDAO {
 	private Map<String, User> users = new HashMap<>();	
 	
 	public UserDAO() {		
-		users.put("pera", new User("pera", "pera1", "pera", "peric", true, beans.Role.GUEST));
+		//users.put("pera", new User("pera", "pera1", "pera", "peric", true, beans.Role.GUEST));
+		try {
+		    ObjectMapper mapper = new ObjectMapper();
+		    List<User> usersList = Arrays.asList(mapper.readValue(Paths.get("C:\\Users\\Hacer\\Desktop\\WEB PROJEKAT\\WebApplicationForApartments\\WebContent\\resources\\users.json").toFile(), User[].class));   
+		
+		    // print 
+		    usersList.forEach(System.out::println);
+		    
+		    for(User u : usersList)
+		    	users.put(u.getUsername(), u);		    
+
+		} catch (Exception ex) {
+		    ex.printStackTrace();
+		    
+		}
 	}
 
 	public User find(String username, String password) {
@@ -31,6 +53,10 @@ public class UserDAO {
 	
 	public Collection<User> findAll() {
 		return users.values();
+	}
+	
+	public void addUser(User user) throws JsonGenerationException, JsonMappingException, IOException {
+		users.put(user.getUsername(), user);
 	}
 	
 }
