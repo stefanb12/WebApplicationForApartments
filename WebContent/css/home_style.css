@@ -6,8 +6,7 @@
     padding: 0;
 }
 
-body{
-    background-image: url(home_background.jpg);  
+body{    
     background-size: cover;
     background-position: center;
 }

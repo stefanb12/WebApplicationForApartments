@@ -3,6 +3,7 @@ package services;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -12,7 +13,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,13 +22,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import beans.User;
 import dao.UserDAO;
 
-@Path("/users") // Nije potreban ovaj servis, sve se radi u UserService
-public class LoginService {
-
+@Path("/users")
+public class UserService {
+	
 	@Context
 	ServletContext ctx;
 	
-	public LoginService() {
+	public UserService() {
 		
 	}
 	
@@ -41,8 +41,25 @@ public class LoginService {
 	}
 	
 	@GET
+	@Path("/allUsers") // Svi korisnici
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<User> getAllUser() {	
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		return userDao.findAll();	
+	}
+	
+	@GET
+	@Path("/usersByHost")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<User> getUsersByHost() {	// Implementirati
+		//UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		return null;
+	}
+	
+	/*@GET
 	@Path("/login")
-	public Response login(@QueryParam("username") String username, @QueryParam("password") String password) {
+	public Response login(@QueryParam("username") String username, @QueryParam("password") String password,
+			@Context HttpServletRequest request) {
 		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
 		User loggedUser = userDao.find(username, password);
 		System.out.println("Username:" + username + ", Password:" + password);
@@ -51,7 +68,23 @@ public class LoginService {
 			return Response.status(400).entity("Invalid username and/or password").build();
 		}
 		System.out.println("ULOGOVAN");
+		request.getSession().setAttribute("user", loggedUser); 
+		return Response.status(200).build();
+	}*/
 	
+	@POST
+	@Path("/login")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response login(User user, @Context HttpServletRequest request) {
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		User loggedUser = userDao.find(user.getUsername(), user.getPassword());
+		System.out.println("Username:" + user.getUsername() + ", Password:" + user.getPassword());
+		if (loggedUser == null) {
+			System.out.println("NE POSTOJI USER SA TIM USERNAME/PASSWORD!");
+			return Response.status(400).entity("Invalid username and/or password").build();
+		}
+		System.out.println("POSTOJI USER!");
+		request.getSession().setAttribute("user", loggedUser); 
 		return Response.status(200).build();
 	}
 	
@@ -92,9 +125,7 @@ public class LoginService {
 		System.out.println("REGISTROVAN");
 		userDao.addUser(user);
 		return Response.status(200).build();
-	}
-
-	
+	}	
 	
 	@POST
 	@Path("/logout")

@@ -7,7 +7,7 @@ var app = new Vue({
   methods:{
     checkForm: function(e) {     
     	axios
-  		.get('rest/users/login', {params:{"username": this.username, "password":this.password}});
+  		.post('rest/users/login', {"username": this.username, "password": this.password });
     }
   }
 })
@@ -26,11 +26,11 @@ var app = new Vue({
 	    registerNewUser: function(e) {     
 	    	axios
 	  		.post('rest/users/register', {"username": this.username, 
-	  											 "password":this.password,
-	  											 "name":this.name,
-	  											 "surname":this.lastname,
-	  											 "gender":true,
-	  											 "role":"GUEST"});
+	  									  "password":this.password,
+	  									  "name":this.name,
+	  									  "surname":this.lastname,
+	  									  "gender":true,
+	  									  "role":"GUEST"});
 	    }
 	  }
 })

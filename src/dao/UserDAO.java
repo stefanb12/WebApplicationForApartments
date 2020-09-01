@@ -1,7 +1,7 @@
 package dao;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,12 +18,13 @@ public class UserDAO {
 	
 	private Map<String, User> users = new HashMap<>();	
 	
-	public UserDAO() {		
-		//users.put("pera", new User("pera", "pera1", "pera", "peric", true, beans.Role.GUEST));
+	public UserDAO(String contextPath) {		
 		try {
 		    ObjectMapper mapper = new ObjectMapper();
-		    List<User> usersList = Arrays.asList(mapper.readValue(Paths.get("C:\\Users\\Hacer\\Desktop\\WEB PROJEKAT\\WebApplicationForApartments\\WebContent\\resources\\users.json").toFile(), User[].class));   
-		
+		    File file = new File(contextPath + "/users.json"); // ??????
+			System.out.println(file.getCanonicalPath());
+		    List<User> usersList = Arrays.asList(mapper.readValue(file, User[].class)); // ???
+		    
 		    // print 
 		    usersList.forEach(System.out::println);
 		    
@@ -35,7 +36,7 @@ public class UserDAO {
 		    
 		}
 	}
-
+		
 	public User find(String username, String password) {
 		if (!users.containsKey(username)) {
 			return null;
@@ -58,5 +59,7 @@ public class UserDAO {
 	public void addUser(User user) throws JsonGenerationException, JsonMappingException, IOException {
 		users.put(user.getUsername(), user);
 	}
+		
+		
 	
 }
