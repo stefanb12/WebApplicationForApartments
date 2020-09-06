@@ -1,7 +1,12 @@
 package dao;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Apartment;
 import beans.Host;
@@ -11,7 +16,15 @@ public class ApartmentDAO {
 private ArrayList<Apartment> apartments = new ArrayList<>();	
 	
 	public ApartmentDAO() {		
-		// Ucitaj apartmane	
+		
+	}
+
+	public ApartmentDAO(String contextPath) {		
+		loadApartments(contextPath);
+	}
+	
+	public Collection<Apartment> findAll() {
+		return apartments;
 	}
 	
 	public Collection<Apartment> findAllActiveApartments() {
@@ -39,15 +52,30 @@ private ArrayList<Apartment> apartments = new ArrayList<>();
 		return apartmetnsByHost;
 	}	
 	
+	public Apartment addApartment(Apartment apartment) {
+		apartments.add(apartment);
+		return apartment;
+	}
+	
 	public void deleteApartment(Apartment apartment) {
 		for (Apartment a : apartments) 
 			if(a.equals(apartment)) // Izmeni !!!!!!!!!!!!!
 				apartments.remove(a);	
 	}
 	
-	public Apartment addApartment(Apartment apartment) {
-		apartments.add(apartment);
-		return apartment;
+	private void loadApartments(String contextPath) {
+		try {
+		    ObjectMapper mapper = new ObjectMapper();
+		    File file = new File(contextPath + "files\\apartments.json");
+
+		    List<Apartment> apartmentsList = Arrays.asList(mapper.readValue(file, Apartment[].class)); 		   
+		    
+		    for(Apartment apartment : apartmentsList)
+		    	apartments.add(apartment);		    
+
+		} catch (Exception ex) {
+		    ex.printStackTrace();		    
+		}
 	}
 	
 }

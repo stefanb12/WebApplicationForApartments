@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import beans.User;
 import dao.UserDAO;
 
-@Path("/users") // Nije potreban ovaj servis, sve se radi u UserService
+@Path("/usersssss") // Nije potreban ovaj servis, sve se radi u UserService
 public class LoginService {
 
 	@Context

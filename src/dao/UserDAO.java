@@ -2,15 +2,17 @@ package dao;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import beans.User;
 
@@ -18,23 +20,12 @@ public class UserDAO {
 	
 	private Map<String, User> users = new HashMap<>();	
 	
+	public UserDAO() {
+		
+	}
+	
 	public UserDAO(String contextPath) {		
-		try {
-		    ObjectMapper mapper = new ObjectMapper();
-		    File file = new File(contextPath + "/users.json"); // ??????
-			System.out.println(file.getCanonicalPath());
-		    List<User> usersList = Arrays.asList(mapper.readValue(file, User[].class)); // ???
-		    
-		    // print 
-		    usersList.forEach(System.out::println);
-		    
-		    for(User u : usersList)
-		    	users.put(u.getUsername(), u);		    
-
-		} catch (Exception ex) {
-		    ex.printStackTrace();
-		    
-		}
+		loadUsers(contextPath);
 	}
 		
 	public User find(String username, String password) {
@@ -60,6 +51,34 @@ public class UserDAO {
 		users.put(user.getUsername(), user);
 	}
 		
-		
+	public User saveUser(String contextPath, User user) {
+		ObjectMapper mapper = new ObjectMapper();
+	    String path = contextPath + "files\\users.json";
+
+	    users.put(user.getUsername(), user);
+	    mapper.enable(SerializationFeature.INDENT_OUTPUT);
+		try {		    		    
+			mapper.writeValue(Paths.get(path).toFile(), users);
+			System.out.println("Save: " + Paths.get(path).toFile());
+		} catch (Exception ex) {
+		    ex.printStackTrace();		    
+		}
+		return user;
+	}	
+	
+	private void loadUsers(String contextPath) {
+		try {
+		    ObjectMapper mapper = new ObjectMapper();
+		    File file = new File(contextPath + "files\\users.json");
+			System.out.println("Load: " + contextPath + "files\\users.json");
+		    List<User> usersList = mapper.readValue(file, new TypeReference<List<User>>() {}); 		   
+		    
+		    for(User user : usersList)
+		    	users.put(user.getUsername(), user);	    
+
+		} catch (Exception ex) {
+		    ex.printStackTrace();		    
+		}
+	}
 	
 }

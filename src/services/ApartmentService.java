@@ -21,6 +21,7 @@ public class ApartmentService {
 	
 	@Context
 	ServletContext ctx;
+	//private String path;
 	
 	public ApartmentService() {
 		
@@ -28,9 +29,19 @@ public class ApartmentService {
 	
 	@PostConstruct
 	public void init() { 
-		if (ctx.getAttribute("apartmentDAO") == null) { 
-			ctx.setAttribute("apartmentDAO", new ApartmentDAO());
-		}
+		if (ctx.getAttribute("apartmentDAO") == null) {
+			String contextPath = ctx.getRealPath("");
+			//path = contextPath;
+			ctx.setAttribute("apartmentDAO", new ApartmentDAO(contextPath));
+		}		
+	}
+	
+	@GET
+	@Path("/") // Svi apartmani
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Apartment> getAllApartments() {	
+		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
+		return apartmentDAO.findAllActiveApartments();	
 	}
 	
 	@GET
@@ -60,14 +71,6 @@ public class ApartmentService {
 	}		
 	
 	@POST
-	@Path("/deleteApartment")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void deleteApartment(Apartment apartment) {	
-		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
-		apartmentDAO.deleteApartment(apartment);
-	}
-	
-	@POST
 	@Path("/addApartment")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -76,5 +79,13 @@ public class ApartmentService {
 		return apartmentDAO.addApartment(apartment);
 	}
 	
+	@POST
+	@Path("/deleteApartment")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void deleteApartment(Apartment apartment) {	
+		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
+		apartmentDAO.deleteApartment(apartment);
+	}
+
 	// Dodaj izmene apartmana
 }

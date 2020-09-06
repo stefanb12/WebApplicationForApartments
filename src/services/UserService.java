@@ -1,7 +1,5 @@
 package services;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -17,8 +15,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import beans.User;
 import dao.UserDAO;
 
@@ -27,6 +23,7 @@ public class UserService {
 	
 	@Context
 	ServletContext ctx;
+	public static String path;
 	
 	public UserService() {
 		
@@ -36,12 +33,13 @@ public class UserService {
 	public void init() {
 		if (ctx.getAttribute("userDAO") == null) {
 			String contextPath = ctx.getRealPath("");
+			path = contextPath;
 			ctx.setAttribute("userDAO", new UserDAO(contextPath));
 		}
 	}
 	
 	@GET
-	@Path("/allUsers") // Svi korisnici
+	@Path("/") // Svi korisnici
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<User> getAllUser() {	
 		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
@@ -49,9 +47,9 @@ public class UserService {
 	}
 	
 	@GET
-	@Path("/usersByHost")
+	@Path("/usersByHost") 
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<User> getUsersByHost() {	// Implementirati
+	public Collection<User> getUsersByHost() {	// Implementirati, dodati parametar
 		//UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
 		return null;
 	}
@@ -73,57 +71,35 @@ public class UserService {
 	}*/
 	
 	@POST
-	@Path("/login")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response login(User user, @Context HttpServletRequest request) {
-		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
-		User loggedUser = userDao.find(user.getUsername(), user.getPassword());
-		System.out.println("Username:" + user.getUsername() + ", Password:" + user.getPassword());
-		if (loggedUser == null) {
-			System.out.println("NE POSTOJI USER SA TIM USERNAME/PASSWORD!");
-			return Response.status(400).entity("Invalid username and/or password").build();
-		}
-		System.out.println("POSTOJI USER!");
-		request.getSession().setAttribute("user", loggedUser); 
-		return Response.status(200).build();
-	}
-	
-	@POST
-	@Path("/register")
+	@Path("/register") 
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response register(User user) throws IOException {
 		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
 		User loggedUser = userDao.find(user.getUsername(), user.getPassword());
-		System.out.println("Username:" + user.getUsername() + ", Password:" + user.getPassword());
+
 		if (loggedUser != null) {
-			System.out.println("VEC POSTOJI");
 			return Response.status(400).entity("User already exists").build();
 		}
-				
-		BufferedWriter writer = null;
 
-		try {
-			
-			writer = new BufferedWriter(new FileWriter("C:\\Users\\Hacer\\Desktop\\WEB PROJEKAT\\WebApplicationForApartments\\WebContent\\resources\\users.json", true));
-			writer.newLine();			
-			ObjectMapper mapper = new ObjectMapper();
-			String userString = mapper.writeValueAsString(user);
-			writer.write(userString);			
+		//userDao.addUser(user);
+		userDao.saveUser(path, user);				
+		
+		return Response.status(200).build();
+	}	
+	
+	@POST
+	@Path("/login")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response login(User user, @Context HttpServletRequest request) {
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		User loggedUser = userDao.find(user.getUsername(), user.getPassword());
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			if (writer != null) {
-				try {
-					writer.close();
-				}
-				catch (Exception e) { }
-			}
+		if (loggedUser == null) {
+			return Response.status(400).entity("Invalid username and/or password").build();
 		}
-				
-		System.out.println("REGISTROVAN");
-		userDao.addUser(user);
+		
+		request.getSession().setAttribute("user", loggedUser); 
 		return Response.status(200).build();
 	}	
 	
@@ -142,4 +118,6 @@ public class UserService {
 	public User login(@Context HttpServletRequest request) {
 		return (User) request.getSession().getAttribute("user");
 	}
+	
+	// Izmena naloga
 }
