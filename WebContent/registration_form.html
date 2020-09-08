@@ -10,12 +10,21 @@
 
                 <h2 class="username">Korisničko ime</h2>
                 <input class="usernameinput" type="text" id="username" v-model="username"><br>
+                <div v-if="falseUsername.length">
+				<label>{{falseUsername}}</label>
+				</div>
 
                 <h2 class="name">Ime</h2>
                 <input class="nameinput" type="text" id="name" v-model="name"><br>
+                <div v-if="falseName.length">
+				<label>{{falseName}}</label>
+				</div>
 
                 <h2 class="lastname">Prezime</h2>
                 <input class="lastnameinput" type="text" id="lastname" v-model="lastname"><br>
+                <div v-if="falseLastname.length">
+				<label>{{falseLastname}}</label>
+				</div>
 
                 <h2 class="pol">Pol</h2>
                 <label class="radio">
@@ -31,9 +40,18 @@
 
                 <h2 class="password">Lozinka</h2>
                 <input class="passwordinput" type="password" id="password" v-model="password"><br>
+                <div v-if="falsePassword.length">
+				<label>{{falsePassword}}</label>
+				</div>
 
                 <h2 class="reppass">Potvrda lozinke</h2>
                 <input class="reppassinput" type="password" id="confirmpassword" v-model="confirmpassword"><br>
+                 <div v-if="falseConfirmPassword.length">
+				<label>{{falseConfirmPassword}}</label>
+				</div>
+				<div v-if="notMatchingPasswords.length">
+				<label>{{notMatchingPasswords}}</label>
+				</div>
 
                 <button type="submit">Registruj se</button>
 
