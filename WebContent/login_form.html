@@ -12,9 +12,15 @@
 
                 <h2 class="username">Korisničko ime</h2>
                 <input class="usernameinput" type="text" id="username" v-model="username"><br>
+                <div v-if="falseUsername.length">
+				<label>{{falseUsername}}</label>
+				</div>
 
                 <h2 class="password">Lozinka</h2>
                 <input class="passwordinput" type="password" id="password" v-model="password"><br>
+                <div v-if="falsePassword.length">
+				<label>{{falsePassword}}</label>
+				</div>
 
                 <button type="submit">Uloguj se</button>
 

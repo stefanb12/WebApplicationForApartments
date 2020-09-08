@@ -3,11 +3,28 @@ var app = new Vue({
   data: {
     username: null,
     password: null,
+    falseUsername: "",
+    falsePassword: ""
   },
   methods:{
     checkForm: function(e) {     
-    	axios
-  		.post('rest/users/login', {"username": this.username, "password": this.password });
+    	if(this.password && this.username){
+    		axios
+    		.get('rest/users/login', {params:{"username": this.username, "password":this.password}});
+    	}else if(!this.username && this.password){
+    		this.falseUsername = "Popunite vase korisnicko ime";
+    		e.preventDefault();
+    		return;    		
+    	}else if(this.username && !this.password){
+    		this.falsePassword = "Popunite vasu lozinku";
+    		e.preventDefault();
+    		return;
+    	}else if(!this.username && !this.password){
+    		this.falseUsername = "Popunite vase korisnicko ime";
+    		this.falsePassword = "Popunite vasu lozinku";
+    		e.preventDefault();
+    		return;
+    	}
     }
   }
 })
