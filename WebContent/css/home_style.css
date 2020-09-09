@@ -18,7 +18,11 @@ ul{
     margin-right: 25px;
 }
 
-ul li{
+a {
+    border : 1px solid #fff;
+}
+
+ul li {
     display: inline-block;
 }
 
@@ -30,15 +34,24 @@ ul li a{
     border-radius: 35px;
 }
 
+ul li.active a{
+    background-color: teal;
+    color: azure;
+}
+
+
 ul li a:hover{
     background-color: teal;
     color: azure;
     transition: 0.7s ease;
 }
 
-ul li.active a{
-    background-color: teal;
-    color: azure;
+.left {
+    float: left;
+    list-style-type: none;
+    margin-top: 25px;
+    margin-right: 25px;
+    padding: 5px 20px;
 }
 
 form{
@@ -48,7 +61,7 @@ form{
 form input{
     color: teal;
     background-color: azure;
-    border-radius: 35px;
+    border-radius: 6px;
     border: 1px transparent;
 }
 
