@@ -11,6 +11,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -86,9 +87,27 @@ public class UserService {
 		userDao.saveUser(path, user);				
 		
 		return Response.status(200).build();
-	}	
+	}
 	
-	@POST
+	@GET
+	@Path("/login")
+	public Response login(@QueryParam("username") String username, @QueryParam("password") String password, @Context HttpServletRequest request) {
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		User loggedUser = userDao.find(username, password);
+		System.out.println("USERNAME:" + username + " PASSWORD:" + password);
+		
+		if (loggedUser == null) {
+			System.out.println("NIJE ULOGOVAN");
+			return Response.status(400).entity("Invalid username and/or password").build();
+		}
+		
+		System.out.println("ULOGOVAN");
+		request.getSession().setAttribute("user", loggedUser); 
+		return Response.status(200).build();
+	}
+	
+	
+	/*@POST
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response login(User user, @Context HttpServletRequest request) {
@@ -101,7 +120,7 @@ public class UserService {
 		
 		request.getSession().setAttribute("user", loggedUser); 
 		return Response.status(200).build();
-	}	
+	}*/	
 	
 	@POST
 	@Path("/logout")
@@ -117,6 +136,19 @@ public class UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public User login(@Context HttpServletRequest request) {
 		return (User) request.getSession().getAttribute("user");
+	}
+	
+	@GET
+	@Path("/isLogged")
+	public Boolean isLogged(@QueryParam("username") String username, @QueryParam("password") String password, @Context HttpServletRequest request) {
+		System.out.println("llll");
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		User loggedUser = userDao.find(username, password);
+		if(loggedUser != null) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	// Izmena naloga

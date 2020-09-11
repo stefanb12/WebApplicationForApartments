@@ -18,7 +18,8 @@ import beans.User;
 
 public class UserDAO {
 	
-	private Map<String, User> users = new HashMap<>();	
+	private Map<String, User> users = new HashMap<>();
+	List<User> usersList;
 	
 	public UserDAO() {
 		
@@ -68,13 +69,24 @@ public class UserDAO {
 	
 	private void loadUsers(String contextPath) {
 		try {
-		    ObjectMapper mapper = new ObjectMapper();
-		    File file = new File(contextPath + "files\\users.json");
-			System.out.println("Load: " + contextPath + "files\\users.json");
-		    List<User> usersList = mapper.readValue(file, new TypeReference<List<User>>() {}); 		   
+		    //ObjectMapper mapper = new ObjectMapper();
+		    //File file = new File(contextPath + "files\\users.json");
+			//System.out.println("Load: " + contextPath + "files\\users.json");
+		    //List<User> usersList = mapper.readValue(file, new TypeReference<List<User>>() {}); 		   
 		    
-		    for(User user : usersList)
-		    	users.put(user.getUsername(), user);	    
+		    //for(User user : usersList)
+		    	//users.put(user.getUsername(), user);	   
+			
+			
+			ObjectMapper mapper = new ObjectMapper();
+			usersList = mapper.readValue
+					(Paths.get("C:\\Users\\Hacer\\Desktop\\WEB PROJEKAT\\WebApplicationForApartments\\WebContent\\files\\users.json").toFile(), 
+					new TypeReference<List<User>>(){});
+			
+			for(User u : usersList) {
+		    	users.put(u.getUsername(), u);
+			}
+			
 
 		} catch (Exception ex) {
 		    ex.printStackTrace();		    

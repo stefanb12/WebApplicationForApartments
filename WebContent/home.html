@@ -5,11 +5,70 @@
     </head>
     <body background="images/home_background.jpg">
 
-        <div class="main">
+        <div id="main">
             <div class="logo">
                 <img>
             </div>
-            <router-view></router-view> 
+            <!-- Pocetna -->
+            <div v-if="loggedUser.name==null"> 
+				<ul class="left">
+		        	<li class="active"><a href="">Početna</a></li>
+		        	<li><a href="#">Apartmani</a></li>
+		        	<li><a href="#">Komentari</a></li>
+				</ul>  
+				<ul>
+	        		<li><a href="login_form.html">Uloguj se</a></li>
+            		<li><a href="registration_form.html">Registruj se</a></li>
+				</ul>         	               
+
+			</div>
+			
+			 
+			<!-- HOST -->
+			<div v-else-if="loggedUser.role=='HOST'">
+				<ul class="left">
+		        	<li><a href="#">Početna</a></li>
+		            <li><a href="#">Moji apartmani</a></li>
+		            <li><a href="#">Rezervacije</a></li>
+		            <li><a href="#">Korisnici</a></li>
+		            <li><a href="#">Komentari</a></li>
+				</ul>  
+				<ul>
+			        <li><a href="#">Moj nalog</a></li>
+		            <li><a href="#">Izloguj se</a></li>
+		        </ul>             	               
+			</div>	
+			
+			<!-- ADMINISTRATOR -->
+			<div v-else-if="loggedUser.role=='ADMINISTRATOR'">  
+				<ul class="left">
+		        	<li><a href="#">Početna</a></li>
+		            <li><a href="#">Korisnici</a></li>
+		            <li><a href="#">Apartmani</a></li>
+		            <li><a href="#">Sadržaj apartmana</a></li>
+                	<li><a href="#">Rezervacije</a></li>
+		            <li><a href="#">Komentari</a></li>
+				</ul>  
+				<ul>
+			        <li><a href="#">Moj nalog</a></li>
+		            <li><a href="#">Izloguj se</a></li>
+		        </ul>           	                     
+			</div>	
+			
+			<!-- GUEST -->
+			<div v-else-if="loggedUser.role=='GUEST'">
+				<ul class="left">
+		        	<li><a href="#">Početna</a></li>
+		            <li><a href="#">Apartmani</a></li>
+		            <li><a href="#">Moje rezervacije</a></li>
+		            <li><a href="#">Nova rezervacija</a></li>
+	                <li><a href="#">Komentari</a></li>
+				</ul>  
+				<ul>
+			        <li><a href="#">Moj nalog</a></li>
+		            <li><a href="#">Izloguj se</a></li>
+		        </ul>          	                     
+			</div> 
         </div>
 
         <form>
@@ -58,11 +117,8 @@
 		<script src="js/axios.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/toast.js"></script>
-		<script src="js/home.js"></script>
-		<script src="js/guest.js"></script>
-		<script src="js/host.js"></script>
-		<script src="js/administrator.js"></script>
-	    <script src="js/router.js"></script>
+		<script src="js/homeVue.js"></script>
+		
 
     </body>
 </html>
