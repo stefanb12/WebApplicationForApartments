@@ -1,0 +1,82 @@
+[
+	{
+		"apartment":{
+								"typeOfApartment": "WHOLE",
+								"numberOfRooms": 2,
+								"numberOfGuests":4,
+								"location": {
+												"latitude": 45.24,
+												"longitude": 19.84,
+												"address": {
+																"address": "Sutjeska 3, Novi Sad, 21000"
+														   }		
+											},
+								"releaseDates": null, 
+								"availabilityByDate": null, 
+								"host": null, 
+								"comments": null,
+								"pricePerNight": 38.7, 
+								"checkInTime": "2020-09-11",
+								"checkOutTime": "2020-09-11",
+								"status": true,
+								"amenities": null,
+								"reservations": null
+							  },
+		"startDate": "2020-09-11",
+		"numberOfNights": 6,
+		"totalPrice": 232.2,
+		"message": "Poruka za rezervaciju",
+		"guest": {
+					"username": "pera",
+					"password": "pera123",
+					"name": "Petar",
+					"surname": "Petrovic",
+					"gender": true,
+					"role": "GUEST"
+				 },
+		"statusOfReservation": "ACCEPTED"
+	
+	},
+	
+	{
+		"apartment":{
+								"typeOfApartment": "ROOM",
+								"numberOfRooms": 1,
+								"numberOfGuests":2,
+								"location": {
+												"latitude": 45.24,
+												"longitude": 19.84,
+												"address": {
+																"address": "Cara Dusana 28, Novi Sad, 21000"
+														   }		
+											},
+								"releaseDates": null, 
+								"availabilityByDate": null, 
+								"host": null, 
+								"comments": null,
+								"pricePerNight": 25.9, 
+								"checkInTime": "2020-09-11",
+								"checkOutTime": "2020-09-11",
+								"status": true,
+								"amenities": null,
+								"reservations": null
+							  },
+		"startDate": "2021-11-2",
+		"numberOfNights": 10,
+		"totalPrice": 232.2,
+		"message": "Poruka za rezervaciju 2",
+		"guest": {
+					"username": "pera",
+					"password": "pera123",
+					"name": "Petar",
+					"surname": "Petrovic",
+					"gender": true,
+					"role": "GUEST"
+				 },
+		"statusOfReservation": "CREATED"
+	
+	}
+
+
+
+]
