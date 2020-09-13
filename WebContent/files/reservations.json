@@ -13,7 +13,15 @@
 											},
 								"releaseDates": null, 
 								"availabilityByDate": null, 
-								"host": null, 
+								"host": {
+											"username": "mare",
+											"password": "mare987",
+											"name": "Marko",
+											"surname": "Markovic",
+											"gender": true,
+											"role": "HOST",
+											"appartmentsForRent": null
+										}, 
 								"comments": null,
 								"pricePerNight": 38.7, 
 								"checkInTime": "2020-09-11",
@@ -52,7 +60,15 @@
 											},
 								"releaseDates": null, 
 								"availabilityByDate": null, 
-								"host": null, 
+								"host": {
+											"username": "mika",
+											"password": "mika123",
+											"name": "Milan",
+											"surname": "Milanovic",
+											"gender": true,
+											"role": "HOST",
+											"appartmentsForRent": null
+										}, 
 								"comments": null,
 								"pricePerNight": 25.9, 
 								"checkInTime": "2020-09-11",
@@ -75,8 +91,54 @@
 				 },
 		"statusOfReservation": "CREATED"
 	
+	},
+	
+	{
+		"apartment":{
+								"typeOfApartment": "ROOM",
+								"numberOfRooms": 1,
+								"numberOfGuests":2,
+								"location": {
+												"latitude": 45.24,
+												"longitude": 19.84,
+												"address": {
+																"address": "Cara Dusana 28, Novi Sad, 21000"
+														   }		
+											},
+								"releaseDates": null, 
+								"availabilityByDate": null, 
+								"host": {
+											"username": "mika",
+											"password": "mika123",
+											"name": "Milan",
+											"surname": "Milanovic",
+											"gender": true,
+											"role": "HOST",
+											"appartmentsForRent": null
+										}, 
+								"comments": null,
+								"pricePerNight": 25.9, 
+								"checkInTime": "2020-09-11",
+								"checkOutTime": "2020-09-11",
+								"status": true,
+								"amenities": null,
+								"reservations": null
+							  },
+		"startDate": "2021-11-2",
+		"numberOfNights": 10,
+		"totalPrice": 232.2,
+		"message": "Poruka za rezervaciju 2",
+		"guest": {
+					"username": "nesa",
+					"password": "nesa123",
+					"name": "Nenad",
+					"surname": "Nesic",
+					"gender": true,
+					"role": "GUEST"
+				 },
+		"statusOfReservation": "CREATED"
+	
 	}
-
 
 
 ]

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Apartment;
 import beans.Host;
+import beans.User;
 
 public class ApartmentDAO {
 	
@@ -44,13 +45,33 @@ private ArrayList<Apartment> apartments = new ArrayList<>();
 		return inactiveApartmentsByHost;
 	}
 	
-	public Collection<Apartment> findAllApartments(Host host) {
-		ArrayList<Apartment> apartmetnsByHost = new ArrayList<>();	
+	public Collection<Apartment> findAllApartments(User host) {
+		ArrayList<Apartment> apartmetnsByHost = new ArrayList<>();
+		
+		ArrayList<Apartment> activeApartments = new ArrayList<>();	
 		for (Apartment apartment : apartments) 
+			if(apartment.getStatus())
+				activeApartments.add(apartment);
+		
+		for (Apartment apartment : activeApartments) 
 			if(apartment.getHost().getUsername().equals(host.getUsername()))
 				apartmetnsByHost.add(apartment);		
 		return apartmetnsByHost;
 	}	
+	
+	public Collection<Apartment> findAllInActiveApartments(User host) {
+		ArrayList<Apartment> apartmetnsByHost = new ArrayList<>();
+		
+		ArrayList<Apartment> inActiveApartments = new ArrayList<>();	
+		for (Apartment apartment : apartments) 
+			if(!apartment.getStatus())
+				inActiveApartments.add(apartment);
+		
+		for (Apartment apartment : inActiveApartments) 
+			if(apartment.getHost().getUsername().equals(host.getUsername()))
+				apartmetnsByHost.add(apartment);		
+		return apartmetnsByHost;
+	}
 	
 	public Apartment addApartment(Apartment apartment) {
 		apartments.add(apartment);

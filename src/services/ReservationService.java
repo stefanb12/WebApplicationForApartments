@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import beans.Guest;
 import beans.Host;
 import beans.Reservation;
+import beans.User;
 import dao.ReservationDAO;
 
 @Path("/reservations")
@@ -57,9 +59,10 @@ public class ReservationService {
 	@Path("/reservationsByHost")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Collection<Reservation> getAllReservations(Host host) { // Implementirati
-		//ReservationDAO reservationDAO = (ReservationDAO) ctx.getAttribute("reservationDAO");
-		return null;	
+	public Collection<Reservation> getAllReservations(@Context HttpServletRequest request) {
+		User host = (User) request.getSession().getAttribute("user");
+		ReservationDAO reservationDAO = (ReservationDAO) ctx.getAttribute("reservationDAO");
+		return reservationDAO.findAllReservationsByHost(host);
 	}
 	
 	// Dodati izmenu statusa rezervacije

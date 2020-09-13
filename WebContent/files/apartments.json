@@ -18,7 +18,8 @@
 					"name": "Marko",
 					"surname": "Markovic",
 					"gender": true,
-					"role": "HOST"
+					"role": "HOST",
+					"appartmentsForRent": null
 				}, 
 		"comments": null,
 		"pricePerNight": 38.7, 
@@ -48,13 +49,14 @@
 					"name": "Milan",
 					"surname": "Milanovic",
 					"gender": true,
-					"role": "HOST"
+					"role": "HOST",
+					"appartmentsForRent": null
 				}, 
 		"comments": null,
 		"pricePerNight": 25.9, 
 		"checkInTime": "2020-09-11",
 		"checkOutTime": "2020-09-11",
-		"status": true,
+		"status": false,
 		"amenities": null,
 		"reservations": null	
 	},
@@ -78,7 +80,8 @@
 					"name": "Milan",
 					"surname": "Milanovic",
 					"gender": true,
-					"role": "HOST"
+					"role": "HOST",
+					"appartmentsForRent": null
 				},  
 		"comments": null,
 		"pricePerNight": 18.9, 

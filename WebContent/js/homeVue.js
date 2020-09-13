@@ -15,6 +15,10 @@ const HomeSearch = { template: '<home-search></home-search>' }
 const AllUsers = { template: '<all-users></all-users>' }
 const AllApartments = { template: '<all-apartments></all-apartments>' }
 const AllReservations = { template: '<all-reservations></all-reservations>' }
+const AllUsersByHost = { template: '<all-usersByHost></all-usersByHost>' }
+const AllActiveApartments = { template: '<all-activeApartments></all-activeApartments>' }
+const AllActiveApartmentsByHost = { template: '<all-activeApartmentsByHost></all-activeApartmentsByHost>' }
+const AllNotActiveApartmentsByHost = { template: '<all-notActiveApartmentsByHost></all-notActiveApartmentsByHost>' }
 
 const router = new VueRouter({
 	  mode: 'hash',
@@ -22,7 +26,11 @@ const router = new VueRouter({
 	    { path: '/', component: HomeSearch},
 	    { path: '/allUsers', component: AllUsers },
 	    { path: '/allApartments', component: AllApartments },
-	    { path: '/allReservations', component: AllReservations }
+	    { path: '/allReservations', component: AllReservations },
+	    { path: '/allUsersByHost', component: AllUsersByHost },
+	    { path: '/allActiveApartments', component: AllActiveApartments },
+	    { path: '/allActiveApartmentsByHost', component: AllActiveApartmentsByHost },
+	    { path: '/allNotActiveApartmentsByHost', component: AllNotActiveApartmentsByHost }
 	  ]
 });
 

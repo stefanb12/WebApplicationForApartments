@@ -1,6 +1,8 @@
 package dao;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Collection;
@@ -79,12 +81,16 @@ public class UserDAO {
 			
 			
 			ObjectMapper mapper = new ObjectMapper();
-			usersList = mapper.readValue
-					(Paths.get("C:\\Users\\Hacer\\Desktop\\WEB PROJEKAT\\WebApplicationForApartments\\WebContent\\files\\users.json").toFile(), 
-					new TypeReference<List<User>>(){});
-			
-			for(User u : usersList) {
-		    	users.put(u.getUsername(), u);
+		    BufferedReader in = null;
+			try {
+			    File file = new File(contextPath + "files\\users.json");
+			    in = new BufferedReader(new FileReader(file));
+			    Map<String, User> usersMap = mapper.readValue(in, new TypeReference<Map<String, User>>() {}); 		   
+			    
+			    users = usersMap;
+
+			} catch (Exception ex) {
+			    ex.printStackTrace();		    
 			}
 			
 

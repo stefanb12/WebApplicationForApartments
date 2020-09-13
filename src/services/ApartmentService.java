@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import beans.Apartment;
 import beans.Host;
+import beans.User;
 import dao.ApartmentDAO;
 
 @Path("/apartments")
@@ -56,7 +58,8 @@ public class ApartmentService {
 	@Path("/activeApartmentsByHost")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Collection<Apartment> getActiveApartments(Host host) {
+	public Collection<Apartment> getActiveApartments(@Context HttpServletRequest request) {
+		User host = (User) request.getSession().getAttribute("user");
 		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
 		return apartmentDAO.findAllApartments(host);	
 	}	
@@ -65,10 +68,11 @@ public class ApartmentService {
 	@Path("/inactiveApartmentsByHost")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Collection<Apartment> getInactiveApartments(Host host) {	
+	public Collection<Apartment> getInactiveApartments(@Context HttpServletRequest request) {	
+		User host = (User) request.getSession().getAttribute("user");
 		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
-		return apartmentDAO.findAllInactiveApartments(host);	
-	}		
+		return apartmentDAO.findAllInActiveApartments(host);	
+	}			
 	
 	@POST
 	@Path("/addApartment")

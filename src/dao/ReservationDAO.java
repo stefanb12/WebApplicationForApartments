@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Guest;
 import beans.Reservation;
+import beans.User;
 
 public class ReservationDAO {
 	
@@ -29,6 +30,15 @@ public class ReservationDAO {
 	
 	public Collection<Reservation> findAllReservations(Guest guest) {				
 		return guest.getReservations();
+	}
+	
+	public Collection<Reservation> findAllReservationsByHost(User host) {
+		ArrayList<Reservation> reservationsByHost = new ArrayList<>();	
+		for (Reservation reservation : reservations) {
+			if(reservation.getApartment().getHost().getUsername().equals(host.getUsername()))
+				reservationsByHost.add(reservation);
+		}
+		return reservationsByHost;
 	}
 	
 	private void loadReservations(String contextPath) {

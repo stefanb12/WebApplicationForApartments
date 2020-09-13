@@ -1,5 +1,5 @@
-[
-	{
+{
+	"pera":{
 		"username": "pera",
 		"password": "pera123",
 		"name": "Petar",
@@ -8,13 +8,39 @@
 		"role": "GUEST"
 	},
 	
-	{
+	"jova":{
 		"username": "jova",
 		"password": "jova987",
 		"name": "Jovan",
 		"surname": "Jovanovic",
 		"gender": true,
 		"role": "ADMINISTRATOR"
-	}
+	},
 	
-]
+	"mika":{
+		"username": "mika",
+		"password": "mika123",
+		"name": "Milan",
+		"surname": "Milanovic",
+		"gender": true,
+		"role": "HOST"
+	},
+	
+	"mare":{
+		"username": "mare",
+		"password": "mare987",
+		"name": "Marko",
+		"surname": "Markovic",
+		"gender": true,
+		"role": "HOST"		
+	},
+	
+	"nesa":{
+		"username": "nesa",
+		"password": "nesa123",
+		"name": "Nenad",
+		"surname": "Nesic",
+		"gender": true,
+		"role": "GUEST"		
+	}
+}

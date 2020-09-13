@@ -13,7 +13,7 @@
             <div v-if="loggedUser.name==null"> 
 				<ul class="left">
 		        	<li class="active"><a href="">Početna</a></li>
-		        	<li><a href="#">Apartmani</a></li>
+		        	<li><a href="#/allActiveApartments">Apartmani</a></li>
 		        	<li><a href="#">Komentari</a></li>
 				</ul>  
 				<ul>
@@ -27,10 +27,10 @@
 			<!-- HOST -->
 			<div v-else-if="loggedUser.role=='HOST'">
 				<ul class="left">
-		        	<li><a href="#">Početna</a></li>
-		            <li><a href="#">Moji apartmani</a></li>
+		        	<li><a href="#/">Početna</a></li>
+		            <li><a href="#/allActiveApartmentsByHost">Moji apartmani</a></li>
 		            <li><a href="#">Rezervacije</a></li>
-		            <li><a href="#">Korisnici</a></li>
+		            <li><a href="#/allUsersByHost">Korisnici</a></li>
 		            <li><a href="#">Komentari</a></li>
 				</ul>  
 				<ul>
@@ -58,8 +58,8 @@
 			<!-- GUEST -->
 			<div v-else-if="loggedUser.role=='GUEST'">
 				<ul class="left">
-		        	<li><a href="#">Početna</a></li>
-		            <li><a href="#">Apartmani</a></li>
+		        	<li><a href="#/">Početna</a></li>
+		            <li><a href="#/allActiveApartments">Apartmani</a></li>
 		            <li><a href="#">Moje rezervacije</a></li>
 		            <li><a href="#">Nova rezervacija</a></li>
 	                <li><a href="#">Komentari</a></li>
@@ -84,6 +84,10 @@
 		<script src="js/allUsers.js"></script>
 		<script src="js/allApartments.js"></script>
 		<script src="js/allReservations.js"></script>
+		<script src="js/allUsersByHost.js"></script>
+		<script src="js/allActiveApartments.js"></script>
+		<script src="js/allActiveApartmentsByHost.js"></script>
+		<script src="js/allNotActiveApartmentsByHost.js"></script>		
 		<script src="js/homeVue.js"></script>
 		
 
