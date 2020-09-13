@@ -12,9 +12,8 @@
             <!-- Pocetna -->
             <div v-if="loggedUser.name==null"> 
 				<ul class="left">
-		        	<li class="active"><a href="">Početna</a></li>
+		        	<li><a href="#">Početna</a></li>
 		        	<li><a href="#/allActiveApartments">Apartmani</a></li>
-		        	<li><a href="#">Komentari</a></li>
 				</ul>  
 				<ul>
 	        		<li><a href="login_form.html">Uloguj se</a></li>
@@ -27,46 +26,46 @@
 			<!-- HOST -->
 			<div v-else-if="loggedUser.role=='HOST'">
 				<ul class="left">
-		        	<li><a href="#/">Početna</a></li>
+		        	<li><a href="#">Početna</a></li>
 		            <li><a href="#/allActiveApartmentsByHost">Moji apartmani</a></li>
 		            <li><a href="#">Rezervacije</a></li>
 		            <li><a href="#/allUsersByHost">Korisnici</a></li>
-		            <li><a href="#">Komentari</a></li>
 				</ul>  
 				<ul>
-			        <li><a href="#">Moj nalog</a></li>
-		            <li><a href="#">Izloguj se</a></li>
+			        <li><a href="user_account.html">Moj nalog</a></li>
+			        <li><a href="update_account.html">Izmeni nalog</a></li>
+		            <li><a id="hostLogout" href="login_form.html" v-on:click="logout()">Izloguj se</a></li>
 		        </ul>             	               
 			</div>	
 			
 			<!-- ADMINISTRATOR -->
 			<div v-else-if="loggedUser.role=='ADMINISTRATOR'">  
 				<ul class="left">
-		        	<li><a href="#/">Početna</a></li>
+		        	<li><a href="#">Početna</a></li>
 		            <li><a href="#/allUsers">Korisnici</a></li>
 		            <li><a href="#/allApartments">Apartmani</a></li>
 		            <li><a href="#">Sadržaj apartmana</a></li>
                 	<li><a href="#/allReservations">Rezervacije</a></li>
-		            <li><a href="#">Komentari</a></li>
 				</ul>  
 				<ul>
-			        <li><a href="#">Moj nalog</a></li>
-		            <li><a href="#">Izloguj se</a></li>
+			        <li><a href="user_account.html">Moj nalog</a></li>
+			        <li><a href="update_account.html">Izmeni nalog</a></li>
+		            <li><a id="administratorLogout" href="login_form.html" v-on:click="logout()">Izloguj se</a></li>
 		        </ul>           	                     
 			</div>	
 			
 			<!-- GUEST -->
 			<div v-else-if="loggedUser.role=='GUEST'">
 				<ul class="left">
-		        	<li><a href="#/">Početna</a></li>
+		        	<li><a href="#">Početna</a></li>
 		            <li><a href="#/allActiveApartments">Apartmani</a></li>
 		            <li><a href="#">Moje rezervacije</a></li>
 		            <li><a href="#">Nova rezervacija</a></li>
-	                <li><a href="#">Komentari</a></li>
 				</ul>  
 				<ul>
-			        <li><a href="#">Moj nalog</a></li>
-		            <li><a href="#">Izloguj se</a></li>
+			        <li><a href="user_account.html">Moj nalog</a></li>
+			        <li><a href="update_account.html">Izmeni nalog</a></li>
+		            <li><a id="guestLogout" href="login_form.html" v-on:click="logout()">Izloguj se</a></li>
 		        </ul>          	                     
 			</div> 
         </div>
@@ -88,6 +87,7 @@
 		<script src="js/allActiveApartments.js"></script>
 		<script src="js/allActiveApartmentsByHost.js"></script>
 		<script src="js/allNotActiveApartmentsByHost.js"></script>		
+		<script src="js/logout.js"></script>	
 		<script src="js/homeVue.js"></script>
 		
 

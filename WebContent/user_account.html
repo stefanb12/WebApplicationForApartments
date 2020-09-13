@@ -8,7 +8,7 @@
 	<body>
 		<div class="reg_title"><h1>Moj nalog</h1></div>
         <div class="reg_mane">
-            <form id=account>
+            <div id=account>
 
                 <h2 class="usernamelabel">Korisničko ime</h2>
                 <h3 class="username">{{loggedUser.username}}</h3><br>
@@ -20,23 +20,23 @@
                 <h3 class="lastname">{{loggedUser.surname}}</h3><br>
 
                 <h2 class="pollabel">Pol</h2>
-                <div v-if="loggedUser.gender == true"><h3 class="pol">Muško</h3></div>
-                <div v-else><h3 class="pol">Žensko</h3></div><br>
+                <h3 v-if="loggedUser.gender == true" class="pol">Muško</h3>
+                <h3 v-else class="pol">Žensko</h3><br>
 
                 <h2 class="rolelabel">Uloga</h2>
-                <div v-if="loggedUser.role == 'GUEST'"><h3 class="role">Gost</h3></div>
-                <div v-if="loggedUser.role == 'HOST'"><h3 class="role">Domaćin</h3></div>
-                <div v-if="loggedUser.role == 'ADMINISTRATOR'"><h3 class="role">Administrator</h3></div>        
+                <h3 v-if="loggedUser.role === 'GUEST'" class="role">Gost</h3>
+                <h3 v-if="loggedUser.role === 'HOST'" class="role">Domaćin</h3>
+                <h3 v-if="loggedUser.role === 'ADMINISTRATOR'" class="role">Administrator</h3><br>    
 
                 <h2 class="passwordlabel">Lozinka</h2>
                 <h3 class="password">{{loggedUser.password}}<h3><br>
 
-                <button type="submit">Izmeni podatke</button>
-            </form>
+                <button v-on:click="homePage">Početna</button>
+            </div>
         </div>
         
         <script src="js/vue.js"></script>
 		<script src="js/axios.js"></script>
-		<script src="js/app.js"></script>
+		<script src="js/userAccount.js"></script>
 	</body>
 </html>

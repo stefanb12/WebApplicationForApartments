@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/update_account_style.css">
+    </head>    
+    <body background="images/home_background.jpg">
+	<body>
+        <a href="index.html" class="home">Početna</a>
+
+        <div class="reg_title"><h1>Izmena naloga</h1></div>
+        <div class="reg_mane">
+            <form id="updateAccount" v-on:submit="updateAccount(loggedUser)">
+
+                <h2 class="username">Korisničko ime</h2>
+                <h3 class="usernameinput">{{loggedUser.username}}</h3><br>
+
+                <h2 class="name">Ime</h2>
+                <input class="nameinput" type="text" id="name" v-model="loggedUser.name"><br>
+
+                <h2 class="lastname">Prezime</h2>
+                <input class="lastnameinput" type="text" id="lastname" v-model="loggedUser.surname"><br>
+
+                <h2 class="pol">Pol</h2>
+                <h3 v-if="loggedUser.gender == true" class="polinput">Muško</h3>
+                <h3 v-else class="polinput">Žensko</h3><br>
+
+                <h2 class="role">Uloga</h2>
+                <h3 v-if="loggedUser.role === 'GUEST'" class="roleinput">Gost</h3>
+                <h3 v-if="loggedUser.role === 'HOST'" class="roleinput">Domaćin</h3>
+                <h3 v-if="loggedUser.role === 'ADMINISTRATOR'" class="roleinput">Administrator</h3><br>
+
+                <h2 class="password">Lozinka</h2>
+                <input class="passwordinput" type="password" id="password" v-model="loggedUser.password"><br>
+
+                <h2 class="reppass">Potvrda lozinke</h2>
+                <input class="reppassinput" type="password" id="confirmpassword" v-model="confirmpassword"><br>
+
+                <button type="submit">Izmeni nalog</button>
+
+            </form>
+        </div>
+        
+        <script src="js/vue.js"></script>
+		<script src="js/axios.js"></script>
+		<script src="js/userAccount.js"></script>
+	</body>
+</html>

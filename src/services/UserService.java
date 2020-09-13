@@ -55,22 +55,6 @@ public class UserService {
 		return null;
 	}
 	
-	/*@GET
-	@Path("/login")
-	public Response login(@QueryParam("username") String username, @QueryParam("password") String password,
-			@Context HttpServletRequest request) {
-		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
-		User loggedUser = userDao.find(username, password);
-		System.out.println("Username:" + username + ", Password:" + password);
-		if (loggedUser == null) {
-			System.out.println("NIJE ULOGOVAN");
-			return Response.status(400).entity("Invalid username and/or password").build();
-		}
-		System.out.println("ULOGOVAN");
-		request.getSession().setAttribute("user", loggedUser); 
-		return Response.status(200).build();
-	}*/
-	
 	@POST
 	@Path("/register") 
 	@Produces(MediaType.APPLICATION_JSON)
@@ -104,8 +88,7 @@ public class UserService {
 		System.out.println("ULOGOVAN");
 		request.getSession().setAttribute("user", loggedUser); 
 		return Response.status(200).build();
-	}
-	
+	}	
 	
 	/*@POST
 	@Path("/login")
@@ -134,14 +117,13 @@ public class UserService {
 	@Path("/currentUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User login(@Context HttpServletRequest request) {
+	public User currentUser(@Context HttpServletRequest request) {
 		return (User) request.getSession().getAttribute("user");
 	}
 	
 	@GET
 	@Path("/isLogged")
 	public Boolean isLogged(@QueryParam("username") String username, @QueryParam("password") String password, @Context HttpServletRequest request) {
-		System.out.println("llll");
 		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
 		User loggedUser = userDao.find(username, password);
 		if(loggedUser != null) {
@@ -151,5 +133,34 @@ public class UserService {
 		}
 	}
 	
-	// Izmena naloga
+	@POST
+	@Path("/updateAccount")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User updateAccount(User user) {
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		User updatedUser = userDao.getUser(user.getUsername());
+		if(updatedUser != null) {
+			userDao.deleteUser(user);
+			updatedUser.setUsername(user.getUsername());
+			updatedUser.setName(user.getName());
+			updatedUser.setSurname(user.getSurname());
+			updatedUser.setPassword(user.getPassword());
+			updatedUser.setGender(user.getGender());
+			updatedUser.setRole(user.getRole());
+			userDao.saveUser(path, updatedUser);
+			return user;
+		}else {
+			return null;
+		}
+	}
+	
+	
+	@POST
+	@Path("/deleteUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void deleteUser(User user) {
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		userDao.deleteUser(user);
+	}
 }

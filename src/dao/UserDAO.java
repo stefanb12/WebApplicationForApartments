@@ -42,6 +42,17 @@ public class UserDAO {
 		return user;
 	}
 	
+	public User getUser(String username) {
+		if(users.containsKey(username))
+			return users.get(username);
+		else
+			return null;
+	}
+	
+	public void deleteUser(User user) {
+		users.remove(user.getUsername());
+	}
+	
 	public Boolean isUsernameExist(String username) {
 		return users.containsKey(username);		
 	}
@@ -78,8 +89,7 @@ public class UserDAO {
 		    
 		    //for(User user : usersList)
 		    	//users.put(user.getUsername(), user);	   
-			
-			
+				
 			ObjectMapper mapper = new ObjectMapper();
 		    BufferedReader in = null;
 			try {
