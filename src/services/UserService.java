@@ -163,4 +163,16 @@ public class UserService {
 		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
 		userDao.deleteUser(user);
 	}
+	
+	@POST
+	@Path("/doesUserExist") 
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String doesUserExist(User user) throws IOException {
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		User loggedUser = userDao.find(user.getUsername(), user.getPassword());
+		if (loggedUser != null) {
+			return "Korisnik vec postoji";
+		}
+		return "Uspesno ste se registrovali";
+	}
 }

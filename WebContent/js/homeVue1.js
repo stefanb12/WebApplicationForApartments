@@ -19,6 +19,7 @@ const AllUsersByHost = { template: '<all-usersByHost></all-usersByHost>' }
 const AllActiveApartments = { template: '<all-activeApartments></all-activeApartments>' }
 const AllActiveApartmentsByHost = { template: '<all-activeApartmentsByHost></all-activeApartmentsByHost>' }
 const AllNotActiveApartmentsByHost = { template: '<all-notActiveApartmentsByHost></all-notActiveApartmentsByHost>' }
+const AddNewHost = { template: '<add-NewHost></add-NewHost>' }
 
 const router = new VueRouter({
 	  mode: 'hash',
@@ -30,7 +31,8 @@ const router = new VueRouter({
 	    { path: '/allUsersByHost', component: AllUsersByHost },
 	    { path: '/allActiveApartments', component: AllActiveApartments },
 	    { path: '/allActiveApartmentsByHost', component: AllActiveApartmentsByHost },
-	    { path: '/allNotActiveApartmentsByHost', component: AllNotActiveApartmentsByHost }
+	    { path: '/allNotActiveApartmentsByHost', component: AllNotActiveApartmentsByHost },
+	    { path: '/addNewHost', component: AddNewHost }
 	  ]
 });
 

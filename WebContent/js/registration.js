@@ -14,10 +14,10 @@ var app = new Vue({
 	    falseGender : "",
 	    falseConfirmPassword : "",
 	    notMatchingPasswords : "",
+	    doesExist : ""
 	  },
 	  methods:{
 	    registerNewUser: function(e) {
-	    	
 	    	this.falseUsername = "";
 		    this.falsePassword = "";
 		    this.falseName = "";
@@ -26,15 +26,43 @@ var app = new Vue({
 		    this.falseConfirmPassword = "";
 		    this.notMatchingPasswords = "";
 		    
-	    	if(this.falseUsername && this.falsePassword && this.falseName 
-	    	   && this.falseLastname && this.falseConfirmPassword && this.notMatchingPasswords){
+	    	if(this.username && this.password && this.name 
+	    	   && this.lastname && this.confirmpassword && this.password === this.confirmpassword){
+	    		
+	    		var genderOfUser;
+	    		if(this.gender == "Musko"){
+	    			genderOfUser = true;
+				}else if(this.gender == "Zensko"){
+					genderOfUser = false;
+				}
+	    		
+	    		axios
+		  		.post('rest/users/doesUserExist', {"username": this.username, 
+		  											 "password":this.password,
+		  											 "name":this.name,
+		  											 "surname":this.lastname,
+		  											 "gender":genderOfUser,
+		  											 "role":"GUEST"})
+		  		.then(response => (this.doesExist = response.data));
+	    		
 		    	axios
 		  		.post('rest/users/register', {"username": this.username, 
 		  											 "password":this.password,
 		  											 "name":this.name,
 		  											 "surname":this.lastname,
-		  											 "gender":true,
+		  											 "gender":genderOfUser,
 		  											 "role":"GUEST"});
+		    	
+		    	
+		    	
+		    	this.username= null;
+			    this.password= null;
+			    this.name= null;
+			    this.lastname= null;
+			    this.gender= null;
+			    this.confirmpassword= null;
+		    	e.preventDefault();
+
 		    	return;
 	    	}
 	    	if(!this.username){
@@ -48,6 +76,9 @@ var app = new Vue({
 	    	}
 	    	if(!this.lastname){
 	    		this.falseLastname = "Unesite vase prezime";
+	    	}
+	    	if(!this.gender){
+	    		this.falseGender = "Unesite pol korisnika";
 	    	}
 	    	if(!this.confirmpassword){
 	    		this.falseConfirmPassword = "Unesite potvrdu vase lozinke";

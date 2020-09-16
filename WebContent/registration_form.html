@@ -13,19 +13,19 @@
                 <h2 class="username">Korisničko ime</h2>
                 <input class="usernameinput" type="text" id="username" v-model="username"><br>
                 <div v-if="falseUsername.length">
-				<label>{{falseUsername}}</label>
+				<label style="color: red;">{{falseUsername}}</label>
 				</div>
 
                 <h2 class="name">Ime</h2>
                 <input class="nameinput" type="text" id="name" v-model="name"><br>
                 <div v-if="falseName.length">
-				<label>{{falseName}}</label>
+				<label style="color: red;">{{falseName}}</label>
 				</div>
 
                 <h2 class="lastname">Prezime</h2>
                 <input class="lastnameinput" type="text" id="lastname" v-model="lastname"><br>
                 <div v-if="falseLastname.length">
-				<label>{{falseLastname}}</label>
+				<label style="color: red;">{{falseLastname}}</label>
 				</div>
 
                 <h2 class="pol">Pol</h2>
@@ -39,23 +39,27 @@
                     <span class="checkmark"></span>
                     Žensko 
                 </label>
+                <div v-if="falseGender.length">
+				<label style="color: red;">{{falseGender}}</label>
+				</div>
 
                 <h2 class="password">Lozinka</h2>
                 <input class="passwordinput" type="password" id="password" v-model="password"><br>
                 <div v-if="falsePassword.length">
-				<label>{{falsePassword}}</label>
+				<label style="color: red;">{{falsePassword}}</label>
 				</div>
 
                 <h2 class="reppass">Potvrda lozinke</h2>
                 <input class="reppassinput" type="password" id="confirmpassword" v-model="confirmpassword"><br>
                  <div v-if="falseConfirmPassword.length">
-				<label>{{falseConfirmPassword}}</label>
+				<label style="color: red;">{{falseConfirmPassword}}</label>
 				</div>
 				<div v-if="notMatchingPasswords.length">
-				<label>{{notMatchingPasswords}}</label>
+				<label style="color: red;">{{notMatchingPasswords}}</label>
 				</div>
 
-                <button type="submit">Registruj se</button>
+                <button type="submit">Registruj se</button></br>
+                <label style="color: red;">{{doesExist}}</label>
 
             </form>
         </div>

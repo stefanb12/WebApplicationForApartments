@@ -8,8 +8,23 @@ Vue.component("all-users", {
 <div style="position: absolute;
   left: 100px;
   top: 150px;">
+  
+		
+		<button style="position: relative;
+		  left: -60px;
+		  top: 0px;
+		  background-color: teal;
+		  color: azure;
+		">
+		Svi korisnici</button>
+  
+		<button v-on:click="addHost" style="position: relative;
+		  left: -80px;
+		  top: 0px;
+		">
+		Dodaj novog domacina</button></br>
 
-        <table border="1">
+        <table border="1" style="background-color: grey;">
 			<tr bgcolor="lightgrey">
 				<th>Uloga</th>
 				<th>Ime</th>
@@ -43,7 +58,9 @@ Vue.component("all-users", {
     },
 
 	methods : {
-		
+		addHost : function() {
+			this.$router.push('/addNewHost');  
+    	}
 	}
 	
 });
