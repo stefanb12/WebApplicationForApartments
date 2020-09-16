@@ -45,15 +45,7 @@ public class UserService {
 	public Collection<User> getAllUser() {	
 		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
 		return userDao.findAll();	
-	}
-	
-	@GET
-	@Path("/usersByHost") 
-	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<User> getUsersByHost() {	// Implementirati, dodati parametar
-		//UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
-		return null;
-	}
+	}	
 	
 	@POST
 	@Path("/register") 
@@ -90,7 +82,7 @@ public class UserService {
 		return Response.status(200).build();
 	}	
 	
-	/*@POST
+	@POST
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response login(User user, @Context HttpServletRequest request) {
@@ -103,7 +95,7 @@ public class UserService {
 		
 		request.getSession().setAttribute("user", loggedUser); 
 		return Response.status(200).build();
-	}*/	
+	}	
 	
 	@POST
 	@Path("/logout")

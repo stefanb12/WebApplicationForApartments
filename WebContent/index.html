@@ -12,8 +12,8 @@
             <!-- Pocetna -->
             <div v-if="loggedUser.name==null"> 
 				<ul class="left">
-		        	<li><a href="#">Početna</a></li>
-		        	<li><a href="#/allActiveApartments">Apartmani</a></li>
+		        	<li><a href="#/">Početna</a></li>
+		        	<li><a href="#/allActiveApartments/">Apartmani</a></li>
 				</ul>  
 				<ul>
 	        		<li><a href="login_form.html">Uloguj se</a></li>
@@ -26,10 +26,10 @@
 			<!-- HOST -->
 			<div v-else-if="loggedUser.role=='HOST'">
 				<ul class="left">
-		        	<li><a href="#">Početna</a></li>
-		            <li><a href="#/allActiveApartmentsByHost">Moji apartmani</a></li>
+		        	<li><a href="#/">Početna</a></li>
+		            <li><a href="#/allActiveApartmentsByHost/">Moji apartmani</a></li>
 		            <li><a href="#">Rezervacije</a></li>
-		            <li><a href="#/allUsersByHost">Korisnici</a></li>
+		            <li><a href="#/allUsersByHost/">Korisnici</a></li>
 				</ul>  
 				<ul>
 			        <li><a href="user_account.html">Moj nalog</a></li>
@@ -41,11 +41,11 @@
 			<!-- ADMINISTRATOR -->
 			<div v-else-if="loggedUser.role=='ADMINISTRATOR'">  
 				<ul class="left">
-		        	<li><a href="#">Početna</a></li>
-		            <li><a href="#/allUsers">Korisnici</a></li>
-		            <li><a href="#/allApartments">Apartmani</a></li>
-		            <li><a href="#">Sadržaj apartmana</a></li>
-                	<li><a href="#/allReservations">Rezervacije</a></li>
+		        	<li><a href="#/">Početna</a></li>
+		            <li><a href="#/allUsers/">Korisnici</a></li>
+		            <li><a href="#/allApartments/">Apartmani</a></li>
+		            <li><a href="#/amenities/">Sadržaj apartmana</a></li>
+                	<li><a href="#/allReservations/">Rezervacije</a></li>
 				</ul>  
 				<ul>
 			        <li><a href="user_account.html">Moj nalog</a></li>
@@ -58,7 +58,7 @@
 			<div v-else-if="loggedUser.role=='GUEST'">
 				<ul class="left">
 		        	<li><a href="#">Početna</a></li>
-		            <li><a href="#/allActiveApartments">Apartmani</a></li>
+		            <li><a href="#/allActiveApartments/">Apartmani</a></li>
 		            <li><a href="#">Moje rezervacije</a></li>
 		            <li><a href="#">Nova rezervacija</a></li>
 				</ul>  
@@ -80,7 +80,7 @@
 		<script src="js/jquery.min.js"></script>
 		<script src="js/toast.js"></script>
 		<script src="js/homeSearch.js"></script>
-		<script src="js/allUsers1.js"></script>
+		<script src="js/allUsers.js"></script>
 		<script src="js/allApartments.js"></script>
 		<script src="js/allReservations.js"></script>
 		<script src="js/allUsersByHost.js"></script>
@@ -88,8 +88,9 @@
 		<script src="js/allActiveApartmentsByHost.js"></script>
 		<script src="js/allNotActiveApartmentsByHost.js"></script>		
 		<script src="js/logout.js"></script>	
-		<script src="js/addNewHost.js"></script>	
-		<script src="js/homeVue1.js"></script>
+		<script src="js/addNewHost.js"></script>
+		<script src="js/amenities.js"></script>	
+		<script src="js/router.js"></script>
 		
 
     </body>

@@ -60,5 +60,11 @@ public class AmenititesService {
 		amenitiesDAO.deleteAmenities(amenities);
 	}	
 	
-	// Dodati izmenu
+	@POST
+	@Path("/updateAmenities")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void updateAmenities(Amenities amenities) {	
+		AmenitiesDAO amenitiesDAO = (AmenitiesDAO) ctx.getAttribute("amenitiesDAO");
+		amenitiesDAO.udpateAmenities(amenities);
+	}
 }

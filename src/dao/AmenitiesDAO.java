@@ -33,8 +33,16 @@ public class AmenitiesDAO {
 	
 	public void deleteAmenities(Amenities a) {
 		for (Amenities am : amenities) 
-			if(am.equals(a)) // Izmeni !!!!!!!!!!!!!
+			if(am.getName().equals(a.getName()))
 				amenities.remove(am);	
+	}
+	
+	public void udpateAmenities(Amenities a) {
+		for (Amenities am : amenities) 
+			if(am.getName().equals(a.getName())) {
+				am.setName(a.getName());
+				return;
+			}					
 	}
 	
 	private void loadAmenities(String contextPath) {

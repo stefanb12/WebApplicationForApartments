@@ -81,14 +81,7 @@ public class UserDAO {
 	}	
 	
 	private void loadUsers(String contextPath) {
-		try {
-		    //ObjectMapper mapper = new ObjectMapper();
-		    //File file = new File(contextPath + "files\\users.json");
-			//System.out.println("Load: " + contextPath + "files\\users.json");
-		    //List<User> usersList = mapper.readValue(file, new TypeReference<List<User>>() {}); 		   
-		    
-		    //for(User user : usersList)
-		    	//users.put(user.getUsername(), user);	   
+		try {   
 				
 			ObjectMapper mapper = new ObjectMapper();
 		    BufferedReader in = null;
