@@ -11,7 +11,8 @@
 																"address": "Sutjeska 3, Novi Sad, 21000"
 														   }		
 											},
-								"releaseDates": null, 
+								"availableFrom": "2020-09-11", 
+								"availableTo": "2020-09-11",  
 								"availabilityByDate": null, 
 								"host": {
 											"username": "mare",
@@ -19,8 +20,7 @@
 											"name": "Marko",
 											"surname": "Markovic",
 											"gender": true,
-											"role": "HOST",
-											"appartmentsForRent": null
+											"role": "HOST"
 										}, 
 								"comments": null,
 								"pricePerNight": 38.7, 
@@ -58,7 +58,8 @@
 																"address": "Cara Dusana 28, Novi Sad, 21000"
 														   }		
 											},
-								"releaseDates": null, 
+								"availableFrom": "2020-09-11", 
+								"availableTo": "2020-09-11",  
 								"availabilityByDate": null, 
 								"host": {
 											"username": "mika",
@@ -66,8 +67,7 @@
 											"name": "Milan",
 											"surname": "Milanovic",
 											"gender": true,
-											"role": "HOST",
-											"appartmentsForRent": null
+											"role": "HOST"
 										}, 
 								"comments": null,
 								"pricePerNight": 25.9, 
@@ -105,7 +105,8 @@
 																"address": "Cara Dusana 28, Novi Sad, 21000"
 														   }		
 											},
-								"releaseDates": null, 
+								"availableFrom": "2020-09-11", 
+								"availableTo": "2020-09-11",  
 								"availabilityByDate": null, 
 								"host": {
 											"username": "mika",
@@ -113,8 +114,7 @@
 											"name": "Milan",
 											"surname": "Milanovic",
 											"gender": true,
-											"role": "HOST",
-											"appartmentsForRent": null
+											"role": "HOST"
 										}, 
 								"comments": null,
 								"pricePerNight": 25.9, 

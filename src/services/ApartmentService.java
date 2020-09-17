@@ -23,7 +23,7 @@ public class ApartmentService {
 	
 	@Context
 	ServletContext ctx;
-	//private String path;
+	public static String path;
 	
 	public ApartmentService() {
 		
@@ -33,7 +33,7 @@ public class ApartmentService {
 	public void init() { 
 		if (ctx.getAttribute("apartmentDAO") == null) {
 			String contextPath = ctx.getRealPath("");
-			//path = contextPath;
+			path = contextPath;
 			ctx.setAttribute("apartmentDAO", new ApartmentDAO(contextPath));
 		}		
 	}
@@ -78,9 +78,18 @@ public class ApartmentService {
 	@Path("/addApartment")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Apartment addApartment(Apartment apartment) {
+	public Apartment addApartment(@Context HttpServletRequest request, Apartment apartment) {
+		System.out.println("NOVI APARTMAN SERVICE");
 		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
-		return apartmentDAO.addApartment(apartment);
+		User host = (User) request.getSession().getAttribute("user");
+		apartment.setHost(host);
+		Apartment existingApartment = apartmentDAO.findApartmentByLocation(apartment.getLocation().getAddress().getAddress());
+		if(existingApartment == null) {
+			System.out.println("Sacuvao");
+			return apartmentDAO.saveApartment(path, apartment);
+		}
+		System.out.println("Nije sacuvao");
+		return null;
 	}
 	
 	@POST
@@ -90,6 +99,19 @@ public class ApartmentService {
 		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
 		apartmentDAO.deleteApartment(apartment);
 	}
+	
+	@POST
+	@Path("/doesApartmentExist")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String doesApartmentExist(@Context HttpServletRequest request, Apartment apartment) {
+		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
+		Apartment existingApartment = apartmentDAO.findApartmentByLocation(apartment.getLocation().getAddress().getAddress());
+		if(existingApartment != null) {
+			return "Apartman vec postoji!";
+		}
+		return "Uspesno ste kreirali novi apartman";
+	}
 
-	// Dodaj izmene apartmana
+
 }

@@ -1,5 +1,5 @@
-[
-	{
+{
+	"Sutjeska 3, Novi Sad, 21000":{
 		"typeOfApartment": "WHOLE",
 		"numberOfRooms": 2,
 		"numberOfGuests":4,
@@ -10,7 +10,8 @@
 										"address": "Sutjeska 3, Novi Sad, 21000"
 								   }		
 					},
-		"releaseDates": null, 
+		"availableFrom": "2020-09-11", 
+		"availableTo": "2020-09-11", 
 		"availabilityByDate": null, 
 		"host": {
 					"username": "mare",
@@ -18,8 +19,7 @@
 					"name": "Marko",
 					"surname": "Markovic",
 					"gender": true,
-					"role": "HOST",
-					"appartmentsForRent": null
+					"role": "HOST"
 				}, 
 		"comments": null,
 		"pricePerNight": 38.7, 
@@ -30,7 +30,7 @@
 		"reservations": null	
 	},
 
-	{
+	"Cara Dusana 28, Novi Sad, 21000":{
 		"typeOfApartment": "ROOM",
 		"numberOfRooms": 1,
 		"numberOfGuests":2,
@@ -41,7 +41,8 @@
 										"address": "Cara Dusana 28, Novi Sad, 21000"
 								   }		
 					},
-		"releaseDates": null, 
+		"availableFrom": "2020-09-11", 
+		"availableTo": "2020-09-11", 
 		"availabilityByDate": null, 
 		"host": {
 					"username": "mika",
@@ -49,8 +50,7 @@
 					"name": "Milan",
 					"surname": "Milanovic",
 					"gender": true,
-					"role": "HOST",
-					"appartmentsForRent": null
+					"role": "HOST"
 				}, 
 		"comments": null,
 		"pricePerNight": 25.9, 
@@ -61,7 +61,7 @@
 		"reservations": null	
 	},
 	
-	{
+	"Ive Andrica 9, Novi Sad, 21000":{
 		"typeOfApartment": "ROOM",
 		"numberOfRooms": 1,
 		"numberOfGuests":4,
@@ -72,7 +72,8 @@
 										"address": "Ive Andrica 9, Novi Sad, 21000"
 								   }		
 					},
-		"releaseDates": null, 
+		"availableFrom": "2020-09-11", 
+		"availableTo": "2020-09-11", 
 		"availabilityByDate": null, 
 		"host":{
 					"username": "mika",
@@ -80,8 +81,7 @@
 					"name": "Milan",
 					"surname": "Milanovic",
 					"gender": true,
-					"role": "HOST",
-					"appartmentsForRent": null
+					"role": "HOST"
 				},  
 		"comments": null,
 		"pricePerNight": 18.9, 
@@ -92,4 +92,4 @@
 		"reservations": null	
 	}
 
-]
+}

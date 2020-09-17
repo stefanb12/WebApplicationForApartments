@@ -8,9 +8,10 @@ public class Apartment {
 	int numberOfRooms;
 	int numberOfGuests;
 	Location location;
-	ArrayList<Date> releaseDates; // Datumi za izdavanje
+	Date availableFrom;
+	Date availableTo;
 	ArrayList<Date> availabilityByDate; // Dostupnost po datumima
-	Host host; // Domacin
+	User host; // Domacin
 	ArrayList<Comment> comments;
 	// Slike
 	Double pricePerNight; // Cena po noci
@@ -25,7 +26,7 @@ public class Apartment {
 	}
 
 	public Apartment(TypeOfApartment typeOfApartment, int numberOfRooms, int numberOfGuests, Location location,
-			ArrayList<Date> releaseDates, ArrayList<Date> availabilityByDate, Host host, ArrayList<Comment> comments,
+			Date availableFrom, Date availableTo, ArrayList<Date> availabilityByDate, User host, ArrayList<Comment> comments,
 			Double pricePerNight, Date checkInTime, Date checkOutTime, Boolean status, ArrayList<Amenities> amenities,
 			ArrayList<Reservation> reservations) {
 		super();
@@ -33,7 +34,8 @@ public class Apartment {
 		this.numberOfRooms = numberOfRooms;
 		this.numberOfGuests = numberOfGuests;
 		this.location = location;
-		this.releaseDates = releaseDates;
+		this.availableFrom = availableFrom;
+		this.availableTo = availableTo;
 		this.availabilityByDate = availabilityByDate;
 		this.host = host;
 		this.comments = comments;
@@ -77,12 +79,20 @@ public class Apartment {
 		this.location = location;
 	}
 
-	public ArrayList<Date> getReleaseDates() {
-		return releaseDates;
+	public Date getAvailableFrom() {
+		return availableFrom;
 	}
 
-	public void setReleaseDates(ArrayList<Date> releaseDates) {
-		this.releaseDates = releaseDates;
+	public void setAvailableFrom(Date availableFrom) {
+		this.availableFrom = availableFrom;
+	}
+	
+	public Date getAvailableTo() {
+		return availableTo;
+	}
+
+	public void setAvailableTo(Date availableTo) {
+		this.availableTo = availableTo;
 	}
 
 	public ArrayList<Date> getAvailabilityByDate() {
@@ -93,11 +103,11 @@ public class Apartment {
 		this.availabilityByDate = availabilityByDate;
 	}
 
-	public Host getHost() {
+	public User getHost() {
 		return host;
 	}
 
-	public void setHost(Host host) {
+	public void setHost(User host) {
 		this.host = host;
 	}
 
